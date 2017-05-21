@@ -22,5 +22,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="D:/МеркуриусТаня/JAVA EE/gson-2.6.2.jar"/>
+	<classpathentry kind="lib" path="D:/МеркуриусТаня/JAVA EE/javax.servlet-api-3.1.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -3,6 +3,8 @@ package servlets;
 
 import java.io.IOException;
 
+
+
 import java.util.logging.Level;
 
 import javax.servlet.ServletException;
@@ -12,6 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import accounts.AccountService;
 import accounts.UserProfile;
+import dbService.DBException;
+import dbService.DBService;
+import dbService.dataSets.UsersDataSet;
 /**
  * Servlet implementation class SignInServlet
  */
@@ -44,9 +49,19 @@ public class SignInServlet extends HttpServlet {
 
 		String login = request.getParameter("login");
 		String pass = request.getParameter("password");
-		UserProfile user = accountService.getUserByLogin(login);
+		//		UserProfile user = accountService.getUserByLogin(login);
 	//	java.util.logging.Logger.getLogger("My Logger").info("signin post with login:" + login + " password:" + pass);
 
+		DBService dataService = new DBService();
+		UsersDataSet usersSet = null;
+		long id = 0;
+		 try {
+			 id = dataService.getUserByLogin(login);
+			 usersSet = dataService.getUser(id);
+		} catch (DBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		 if (login == null || pass == null) {
 	            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 	            response.getWriter().println("Unauthorized");
@@ -54,7 +69,7 @@ public class SignInServlet extends HttpServlet {
 	        }
 
 	        UserProfile profile = accountService.getUserByLogin(login);
-	        if (profile == null /*|| !profile.getPass().equals(pass)*/) {
+	        if (usersSet == null /*|| !profile.getPass().equals(pass)*/) {
 	            //response.setContentType("text/html;charset=utf-8");
 	            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 	            response.getWriter().println("Unauthorized");

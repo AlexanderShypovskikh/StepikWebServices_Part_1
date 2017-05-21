@@ -2,6 +2,8 @@ package servlets;
 
 
 import java.io.IOException;
+
+
 import java.util.logging.Level;
 
 import javax.servlet.ServletException;
@@ -12,6 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import accounts.AccountService;
 import accounts.UserProfile;
+import dbService.DBException;
+import dbService.DBService;
+
 
 /**
  * Servlet implementation class SignUpServlet
@@ -44,10 +49,21 @@ public class SignUpServlet extends HttpServlet {
 		String login = request.getParameter("login");
 		String pass = request.getParameter("password");
 	//	java.util.logging.Logger.getLogger("My Logger").info("signin post with login:" + login + " password:" + pass);
-		HttpSession session  = request.getSession();
-		UserProfile user = new UserProfile(login);
-	    accountService.addNewUser(user);
-	    accountService.addSession(session.getId(), user);
+		//HttpSession session  = request.getSession();
+		
+		DBService dataService = new DBService();
+		try {
+			dataService.addUser(login);
+		} catch (DBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		//
+		//UserProfile user = new UserProfile(login);
+	    //accountService.addNewUser(user);
+	    //accountService.addSession(session.getId(), user);
 		
 	
 	}

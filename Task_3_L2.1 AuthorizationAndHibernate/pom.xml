@@ -4,9 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>L2.1</groupId>
-    <artifactId>L2.1</artifactId>
+    <groupId>L3.2</groupId>
+    <artifactId>L3.2</artifactId>
     <version>1.0</version>
+
+
+    <properties>
+        <com.h2database.h2.version>1.4.187</com.h2database.h2.version>
+        <mysql.mysql-connector-java.version>5.1.35</mysql.mysql-connector-java.version>
+        <org.hibernate.hibernate-core.version>4.3.10.Final</org.hibernate.hibernate-core.version>
+    </properties>
 
 
 <build>
@@ -40,6 +47,23 @@
         </plugins>
     </build>
     <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.mysql-connector-java.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${com.h2database.h2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${org.hibernate.hibernate-core.version}</version>
+        </dependency>
+        
+       
 
         <dependency>
             <groupId>org.eclipse.jetty</groupId>
@@ -66,7 +90,13 @@
     		<version>1.4.195</version>
 		</dependency>
         
-
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<dependency>
+    		<groupId>org.hibernate</groupId>
+			    <artifactId>hibernate-core</artifactId>
+			    <version>4.3.8.Final</version>
+			</dependency>
+			
     </dependencies>
 
 </project>
